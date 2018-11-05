@@ -29,20 +29,20 @@ def show_image():
 
 @app.route('/classification',methods=['GET'] )
 def classification_fun():
-    model_name = request.args.get("model")
+    model_name = request.args.get("browser")
     acu = ""
     acc,report = m.model_report(model_name)
-    if model_name == "logistic":
+    if model_name == "Logistic Regression":
         acu = " Logistec Regression Accuracy is "
-    elif model_name == "knnc":
+    elif model_name == "KNN Classifier":
         acu = " KNN Classifier Accuracy is "
-    elif model_name == "naive":
+    elif model_name == "Naive Bayes":
         acu = " Naive Bayes Accuracy is "
-    elif model_name == "svc":
+    elif model_name == "Support Vector Classifier":
         acu = " Support Vector Classifier  Accuracy is "
-    elif model_name == "dtc":
+    elif model_name == "Decsion Tree Classifier":
         acu = " Decsion Tree Classifier Accuracy is "
-    elif model_name == "rfc":
+    elif model_name == "Random Forest Classifier":
         acu = " Random Forest Classifier Accuracy is "
     else:
         acu ="Error in Model Name"
@@ -53,6 +53,10 @@ def classification_fun():
 @app.route('/predict')
 def student():
     return render_template('prediction.html')
+
+@app.route('/train')
+def train():
+    return render_template('list.html')
 
 @app.route('/result',methods = ['POST', 'GET'])
 def result():
